@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace checkout.Business
 {
+    /// <summary>
+    /// Add/Remove items to/from basket
+    /// </summary>
     public class ItemManagerImpl : IItemManager
     {
         private readonly ILogger _log;

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace checkout.Business
 {
+    /// <summary>
+    /// Managing offers
+    /// </summary>
     public class OfferManagerImpl : IOfferManager
     {
         private readonly ILogger _log;
