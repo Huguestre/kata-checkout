@@ -52,6 +52,7 @@ Mkfile.old
 dkms.conf
 
 # Other
-checkout/.vs
-checkout/checkout/bin
-checkout/checkout/obj
+.vs
+checkout/bin
+checkout/obj
+*.csproj.user
