@@ -82,5 +82,12 @@ namespace checkout_tests.Business
             Item item = aValidCoconut;
             Assert.Null(sut.GetOfferForItem(item));
         }
+
+        [Fact]
+        public void GetOfferForItem_NullItem()
+        {
+            IOfferManager sut = new OfferManagerImpl(_mockLogger.Object);
+            Assert.Null(sut.GetOfferForItem(null));
+        }
     }
 }

@@ -35,6 +35,9 @@ namespace checkout.Business
 
             try
             {
+                if(item==null)
+                    throw new ArgumentNullException(nameof(item));
+
                 if (offers.Any(o => o.Id == item.Id))//any offer for this item
                 {
                     offer = offers.First(o => o.Id == item.Id);//offer for this item
@@ -45,6 +48,11 @@ namespace checkout.Business
                 _log.LogCritical(ex, $"{nameof(OfferManagerImpl)}.{nameof(GetOfferForItem)} failed");
             }
             return offer;
+        }
+
+        public List<Offer> GetOffers()
+        {
+            return offers;
         }
     }
 }
