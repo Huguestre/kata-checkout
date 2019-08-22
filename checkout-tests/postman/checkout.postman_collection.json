@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "e43b77ac-1668-42c7-aecf-6615e36e8306",
+		"name": "other",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "basket",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{baseURL}/basket",
+					"host": [
+						"{baseURL}"
+					],
+					"path": [
+						"basket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add apple",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\tName:\"Apple\",\n\tId:\"A99\",\n\tPrice:0.50\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44355/api/basket",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44355",
+					"path": [
+						"api",
+						"basket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add biscuit",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\tName:\"Biscuit\",\n\tId:\"B15\",\n\tPrice:0.30\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/basket",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"basket"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

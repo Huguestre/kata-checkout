@@ -12,7 +12,7 @@ namespace checkout_tests.Business
     public class BasketManagerTests
     {
         private static readonly Mock<ILogger<BasketManagerTests>> _mockLogger = new Mock<ILogger<BasketManagerTests>>();
-
+        
         #region valid items
         private static Item aValidApple = new Item()
         {
@@ -49,8 +49,10 @@ namespace checkout_tests.Business
             Assert.Throws<ArgumentNullException>(() => new BasketManagerImpl(null));
         }
 
-        [Fact]
-        public void GetBasketTotal()
+        [Theory]
+        [InlineData(2, 2, 1, 2.20)]
+        [InlineData(1, 1, 1, 1.40)]
+        public void GetBasketTotal_NoOffer(int apples, int biscuits, int coconuts, decimal expectedBasketTotal)
         {
             IBasketManager sut = new BasketManagerImpl(_mockLogger.Object);
 
@@ -58,13 +60,35 @@ namespace checkout_tests.Business
             {
                 Id = "My test basket",
                 Items = new Dictionary<Item, int>(){
-                    {aValidApple, 2 },
-                    {aValidBiscuit,2 },
-                    {aValidCoconut, 1 }
+                    {aValidApple, apples },
+                    {aValidBiscuit,biscuits },
+                    {aValidCoconut, coconuts }
                 }
             };
 
-            Assert.True(sut.GetTotal(myBasket) == 2.20m);
+            Assert.True(sut.GetTotal(myBasket) == expectedBasketTotal);
+        }
+
+        [Theory]
+        [InlineData(3, 2, 1, 2.35)]
+        [InlineData(1, 1, 1, 1.40)]
+        [InlineData(10, 10, 10, 12.65)]
+        public void GetBasketTotal_Offers(int apples, int biscuits, int coconuts, decimal expectedBasketTotal)
+        {
+            IBasketManager sut = new BasketManagerImpl(_mockLogger.Object);
+            IOfferManager offerManager = new OfferManagerImpl(_mockLogger.Object);
+
+            Basket myBasket = new Basket()
+            {
+                Id = "My test basket",
+                Items = new Dictionary<Item, int>(){
+                    {aValidApple, apples },
+                    {aValidBiscuit,biscuits },
+                    {aValidCoconut, coconuts }
+                }
+            };
+
+            Assert.True(sut.GetTotal(myBasket,offerManager) == expectedBasketTotal);
         }
     }
 }

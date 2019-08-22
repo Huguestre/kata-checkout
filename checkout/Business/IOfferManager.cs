@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace checkout.Business
 {
-    public interface IBasketManager
+    public interface IOfferManager
     {
-        decimal GetTotal(Basket basket);
+        Offer GetOfferForItem(Item item);
 
-        decimal GetTotal(Basket basket, IOfferManager offerManager);
+        List<Offer> GetOffers();
     }
 }

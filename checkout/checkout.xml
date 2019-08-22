@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>checkout</name>
+    </assembly>
+    <members>
+        <member name="T:checkout.Business.BasketManagerImpl">
+            <summary>
+            Managing baskets
+            </summary>
+        </member>
+        <member name="M:checkout.Business.BasketManagerImpl.GetTotal(checkout.Models.Basket)">
+            <summary>
+            Get total from basket without offers
+            </summary>
+            <param name="basket">basket to compute total from</param>
+            <returns>Total</returns>
+        </member>
+        <member name="M:checkout.Business.BasketManagerImpl.GetTotal(checkout.Models.Basket,checkout.Business.IOfferManager)">
+            <summary>
+            Get total from basket with offers
+            </summary>
+            <param name="basket">basket to compute total from</param>
+            <param name="offers">Offers available</param>
+            <returns>Total</returns>
+        </member>
+        <member name="T:checkout.Business.ItemManagerImpl">
+            <summary>
+            Add/Remove items to/from basket
+            </summary>
+        </member>
+        <member name="M:checkout.Business.ItemManagerImpl.AddItemToBasket(checkout.Models.Item,checkout.Models.Basket@,System.Int32)">
+            <summary>
+            Add an item to the basket
+            </summary>
+            <param name="item">item to add</param>
+            <param name="basket">basket to add to</param>
+            <param name="quantity">quntity of this item to add</param>
+            <returns>true if succeeded</returns>
+        </member>
+        <member name="T:checkout.Business.OfferManagerImpl">
+            <summary>
+            Managing offers
+            </summary>
+        </member>
+        <member name="F:checkout.Business.OfferManagerImpl.offers">
+            <summary>
+            TODO: Hardcoded offers at the moment
+            </summary>
+        </member>
+        <member name="M:checkout.Business.OfferManagerImpl.GetOfferForItem(checkout.Models.Item)">
+            <summary>
+            Get first offer found for the given item
+            </summary>
+            <param name="item">An item</param>
+            <returns>The first offer found for that item or null if none</returns>
+        </member>
+        <member name="T:checkout.Controllers.BasketController">
+            <summary>
+            Get total of current basket with and without offers
+            Add an item to the current basket
+            </summary>
+        </member>
+        <member name="M:checkout.Controllers.BasketController.GetTotal">
+            <summary>
+            Get the totals of the current basket with and without offers
+            </summary>
+            <returns>Totals</returns>
+        </member>
+        <member name="M:checkout.Controllers.BasketController.Post(checkout.Models.Item)">
+            <summary>
+            Scan (Add) an item to the current basket
+            </summary>
+            <remarks>
+            Only supported items are A99, B15, C40
+            </remarks>
+            <param name="item">Item to add</param>
+            <returns>New totals</returns>
+        </member>
+        <member name="T:checkout.Models.Basket">
+            <summary>
+            Base type for shopping basket
+            </summary>
+        </member>
+        <member name="P:checkout.Models.Basket.Items">
+            <summary>
+            Dictionary of items
+            Key is item
+            Value is quantity associated
+            </summary>
+        </member>
+        <member name="T:checkout.Models.Item">
+            <summary>
+            Base type for scanned items
+            </summary>
+        </member>
+        <member name="T:checkout.Models.Offer">
+            <summary>
+            Base type for special offers
+            </summary>
+        </member>
+        <member name="P:checkout.Models.Offer.Qtity">
+            <summary>
+            Quantity required to activate offer
+            </summary>
+        </member>
+        <member name="P:checkout.Models.Offer.Price">
+            <summary>
+            Price to allocate for the given offer
+            </summary>
+        </member>
+        <member name="T:checkout.Program">
+            <summary>
+            TODO:
+            - EF to connect SQLite
+            - Front-end
+            </summary>
+        </member>
+    </members>
+</doc>
