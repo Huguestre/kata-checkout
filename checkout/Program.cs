@@ -10,6 +10,11 @@ using System.Threading.Tasks;
 
 namespace checkout
 {
+    /// <summary>
+    /// TODO:
+    /// - EF to connect SQLite
+    /// - Front-end
+    /// </summary>
     public class Program
     {
         public static void Main(string[] args)
