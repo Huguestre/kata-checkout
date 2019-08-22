@@ -52,6 +52,9 @@ Mkfile.old
 dkms.conf
 
 # Other
-checkout/.vs
-checkout/checkout/bin
-checkout/checkout/obj
+.vs
+checkout/bin
+checkout/obj
+*.csproj.user
+/checkout-tests/bin/Debug/netcoreapp2.2
+/checkout-tests/obj
