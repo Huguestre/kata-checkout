@@ -10,7 +10,10 @@ using Microsoft.Extensions.Logging;
 
 namespace checkout.Controllers
 {
-    ///TODO: Delete, Put...
+    /// <summary>
+    /// Get total of current basket with and without offers
+    /// Add an item to the current basket
+    /// </summary>
     [Route("api/[controller]")]
     public class BasketController : Controller
     {
@@ -25,6 +28,10 @@ namespace checkout.Controllers
             _log = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        /// <summary>
+        /// Get the totals of the current basket with and without offers
+        /// </summary>
+        /// <returns>Totals</returns>
         [HttpGet]
         public string GetTotal()
         {
@@ -50,6 +57,14 @@ namespace checkout.Controllers
             return total;
         }
 
+        /// <summary>
+        /// Scan (Add) an item to the current basket
+        /// </summary>
+        /// <remarks>
+        /// Only supported items are A99, B15, C40
+        /// </remarks>
+        /// <param name="item">Item to add</param>
+        /// <returns>New totals</returns>
         [HttpPost]
         public string Post([FromBody]Item item)
         {
