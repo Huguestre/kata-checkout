@@ -12,7 +12,7 @@ namespace checkout_tests.Business
     public class BasketManagerTests
     {
         private static readonly Mock<ILogger<BasketManagerTests>> _mockLogger = new Mock<ILogger<BasketManagerTests>>();
-        
+
         #region valid items
         private static Item aValidApple = new Item()
         {
@@ -87,8 +87,32 @@ namespace checkout_tests.Business
                     {aValidCoconut, coconuts }
                 }
             };
+            Assert.True(sut.GetTotal(myBasket, offerManager) == expectedBasketTotal);
+        }
 
-            Assert.True(sut.GetTotal(myBasket,offerManager) == expectedBasketTotal);
+        [Fact]
+        public void GetBasketTotal_OfferManagerIsCalled3Times()
+        {
+            IBasketManager sut = new BasketManagerImpl(_mockLogger.Object);
+            Mock<IOfferManager> offerManager = new Mock<IOfferManager>();
+
+            Basket myBasket = new Basket()
+            {
+                Id = "My test basket",
+                Items = new Dictionary<Item, int>(){
+                    {aValidApple, 3 },
+                    {aValidBiscuit,2 },
+                    {aValidCoconut, 1 }
+                }
+            };
+
+            int expectedNumberOfitemTypes = 3;//Apple,Coconut,Biscuits
+
+            offerManager.Setup(o => o.GetOfferForItem(It.IsAny<Item>()));
+
+            sut.GetTotal(myBasket, offerManager.Object);
+
+            offerManager.Verify(o => o.GetOfferForItem(It.IsAny<Item>()),Times.Exactly(expectedNumberOfitemTypes));
         }
     }
 }

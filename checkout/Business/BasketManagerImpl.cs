@@ -55,7 +55,7 @@ namespace checkout.Business
         /// Get total from basket with offers
         /// </summary>
         /// <param name="basket">basket to compute total from</param>
-        /// <param name="offers">Offers available</param>
+        /// <param name="offerManager">Offers available</param>
         /// <returns>Total</returns>
         public decimal GetTotal(Basket basket, IOfferManager offerManager)
         {
