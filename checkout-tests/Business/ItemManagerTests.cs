@@ -92,5 +92,36 @@ namespace checkout_tests.Business
                 .Value == 1);
         }
 
+        [Fact]
+        public void AddRandomToBasket()
+        {
+            IItemManager sut = new ItemManagerImpl(_mockLogger.Object);
+         
+            Basket myBasket = new Basket()
+            {
+                Id = "My test basket"
+            };
+
+            sut.AddItemToBasket(aValidCoconut, ref myBasket);
+            sut.AddItemToBasket(aValidApple, ref myBasket);
+            sut.AddItemToBasket(aValidCoconut, ref myBasket);
+            sut.AddItemToBasket(aValidBiscuit, ref myBasket);
+            sut.AddItemToBasket(aValidCoconut, ref myBasket);
+            sut.AddItemToBasket(aValidBiscuit, ref myBasket,4);
+            sut.AddItemToBasket(aValidApple, ref myBasket,3);
+
+            Assert.True(myBasket.Items
+                .First(kvp => kvp.Key.Id == aValidApple.Id)
+                .Value == 4);
+
+            Assert.True(myBasket.Items
+                .First(kvp => kvp.Key.Id == aValidBiscuit.Id)
+                .Value == 5);
+
+            Assert.True(myBasket.Items
+                .First(kvp => kvp.Key.Id == aValidCoconut.Id)
+                .Value == 3);
+        }
+
     }
 }
